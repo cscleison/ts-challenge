@@ -1,0 +1,8 @@
+{
+  "xLength": 5,
+  "yLength": 4,
+  "startPosition": { "x": 0, "y": 1 },
+  "direction": 0,
+  "mines": [{ "x": 1, "y": 1 }, { "x": 3, "y": 3 }],
+  "exit": { "x": 4, "y": 3 }
+}
