@@ -1,6 +1,6 @@
 import gameSettings from "../settings/game.json";
-import { Board, isOutOfBounds, Turtle } from "./board";
-import { isOnTiles, isSameTile, Tile } from "./navigation";
+import { Board, checkTile, isOutOfBounds, Turtle } from "./board";
+import { Tile } from "./navigation";
 
 const parseTile = (tile: Tile) => Boolean(tile && tile.x >= 0 && tile.y >= 0);
 
@@ -47,9 +47,7 @@ const minesAreValid = (board: Board) =>
   board.mines.every(m => !isOutOfBounds(m, board));
 
 const startPositionIsValid = ({ tile }: Turtle, board: Board) =>
-  !isOutOfBounds(tile, board) &&
-  !isOnTiles(tile, board.mines) &&
-  !isSameTile(tile, board.exit);
+  checkTile(board)(tile) === "inDanger";
 
 export const loadGame = () => {
   if (!gameSettings) {

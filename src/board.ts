@@ -23,21 +23,21 @@ export const ACTION_EMOJIS = {
   r: "↩️"
 };
 export type Action = keyof typeof ACTION_EMOJIS;
-export type Result = "danger" | "success" | "boom" | "outOfBounds";
+export type TileStatus = "inDanger" | "onExit" | "onMine" | "outOfBounds";
 
 export const runAction = (action: Action, turtle: Turtle): Turtle =>
   action === "m"
     ? { ...turtle, tile: move(turtle.tile, turtle.direction) }
     : { ...turtle, direction: rotate(turtle.direction) };
 
-export const checkTurtle = (turtle: Turtle, board: Board): Result =>
-  isSameTile(turtle.tile, board.exit)
-    ? "success"
-    : isOutOfBounds(turtle.tile, board)
+export const checkTile = (board: Board) => (tile: Tile): TileStatus =>
+  isSameTile(tile, board.exit)
+    ? "onExit"
+    : isOnTiles(tile, board.mines)
+    ? "onMine"
+    : isOutOfBounds(tile, board)
     ? "outOfBounds"
-    : isOnTiles(turtle.tile, board.mines)
-    ? "boom"
-    : "danger";
+    : "inDanger";
 
 export const isOutOfBounds = ({ x, y }: Tile, { xLength, yLength }: Board) =>
   x < 0 || y < 0 || x >= xLength || y >= yLength;

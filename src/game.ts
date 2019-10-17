@@ -1,29 +1,34 @@
-import { Action, Board, checkTurtle, Result, runAction, Turtle } from "./board";
+import {
+  Action,
+  Board,
+  checkTile,
+  TileStatus,
+  runAction,
+  Turtle
+} from "./board";
 
 export const runSequence = (
   sequence: Action[],
   turtle: Turtle,
   board: Board
-): string => {
-  let donatello = turtle;
-  let result: Result = "danger";
+): TileStatus => {
+  if (!sequence.length) return "inDanger";
 
-  for (let action of sequence) {
-    donatello = runAction(action, donatello);
-    result = checkTurtle(donatello, board);
+  const [action, ...rest] = sequence;
+  const donatello = runAction(action, turtle);
 
-    if (result !== "danger") {
-      break;
-    }
+  if (action !== "r") {
+    const status = checkTile(board)(donatello.tile);
+    if (status !== "inDanger") return status;
   }
-  return describe(result);
+  return runSequence(rest, donatello, board);
 };
 
-const describe = (result: Result) =>
-  result === "success"
+export const describe = (status: TileStatus) =>
+  status === "onExit"
     ? "Success! 🐢🆓"
-    : result === "boom"
+    : status === "onMine"
     ? "Turtle exploded 💣"
-    : result === "outOfBounds"
+    : status === "outOfBounds"
     ? "Out of bounds 🚀"
     : "Turtle is still in danger 😱";

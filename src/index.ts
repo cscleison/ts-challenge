@@ -1,5 +1,5 @@
 import { Action, ACTION_EMOJIS } from "./board";
-import { runSequence } from "./game";
+import { runSequence, describe } from "./game";
 import { loadGame } from "./load-game";
 import { loadMoves } from "./load-moves";
 
@@ -27,7 +27,7 @@ const run = () => {
     const { turtle, board } = loadGame();
     const moves = loadMoves();
     moves.forEach(sequence =>
-      renderRow(sequence, runSequence(sequence, turtle, board))
+      renderRow(sequence, describe(runSequence(sequence, turtle, board)))
     );
   } catch (e) {
     renderError(e.message);
