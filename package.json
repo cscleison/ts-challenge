@@ -1,0 +1,21 @@
+{
+  "name": "ts-challenge",
+  "scripts": {
+    "start": "webpack --watch",
+    "test": "jest"
+  },
+  "author": "Cleison Stein",
+  "license": "MIT",
+  "jest": {
+    "preset": "ts-jest"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.19",
+    "jest": "^24.9.0",
+    "ts-jest": "^24.1.0",
+    "ts-loader": "^6.2.0",
+    "typescript": "^3.6.3",
+    "webpack": "^4.41.0",
+    "webpack-cli": "^3.3.9"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "outOfBounds": ["m","m"],
+  "explode": ["m","r","m","r","m","m","m"],
+  "fullRotationSuccess": ["r","r","r","r","m","r","m","m","m","m","r","m","m","m","m"],
+  "hitMineLeftToExit": ["m","r","m","m","m","r","m","m","m","r","m"],
+  "danger": ["m","r","m"]
+}
