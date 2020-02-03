@@ -2,7 +2,7 @@ import gameSettings from "../settings/game.json";
 import { Board, checkTile, isOutOfBounds, Turtle } from "./board";
 import { Tile } from "./navigation";
 
-const parseTile = (tile: Tile) => Boolean(tile && tile.x >= 0 && tile.y >= 0);
+const parseTile = (tile: Tile) => Boolean(tile?.x >= 0 && tile?.y >= 0);
 
 const getBoard = ({
   xLength,
@@ -15,8 +15,7 @@ const getBoard = ({
       xLength > 0 &&
         yLength > 0 &&
         parseTile(exit) &&
-        mines &&
-        mines.length &&
+        mines?.length &&
         mines.every(parseTile)
     )
   ) {

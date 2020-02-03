@@ -2,9 +2,7 @@ import movesSettings from "../settings/moves.json";
 import { Action } from "./board";
 
 const isValid = (sequence: Action[]) =>
-  Boolean(
-    sequence && sequence.length && sequence.every(a => a === "m" || a === "r")
-  );
+  Boolean(sequence?.length && sequence.every(a => a === "m" || a === "r"));
 
 export const loadMoves = () => {
   if (!movesSettings) {
